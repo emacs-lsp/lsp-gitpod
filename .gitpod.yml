@@ -2,3 +2,4 @@ image:
   file: .gitpod.Dockerfile
 ports:
   - port: 8085
+    onOpen: open-browser
