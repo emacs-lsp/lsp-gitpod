@@ -23,7 +23,7 @@ RUN ~/emacs/src/emacs --batch -l /tmp/install-packages.el
 COPY configs/install-servers.el /tmp/install-servers.el
 RUN ~/emacs/src/emacs --batch -l /tmp/install-servers.el
 
-RUN rm -rf ~/.emacs.d
+RUN mv ~/.emacs.d/ ~/vanilla
 
 RUN git clone --depth 1 https://github.com/syl20bnr/spacemacs /home/gitpod/.emacs.d/ --branch develop
 COPY configs/spacemacs.d /home/gitpod/.spacemacs.d
@@ -33,6 +33,6 @@ RUN mv ~/.emacs.d ~/spacemacs
 RUN git clone --depth 1 https://github.com/plexus/chemacs2 /home/gitpod/.emacs.d/
 
 COPY configs/.emacs-profiles.el /home/gitpod/.emacs-profiles.el
-COPY configs/vanilla /home/gitpod/vanilla
+COPY configs/vanilla/init.el /home/gitpod/vanilla/init.el
 
 RUN echo export SPACEMACSDIR=~/.spacemacs.d >> ~/.bashrc

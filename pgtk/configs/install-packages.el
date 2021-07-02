@@ -6,7 +6,7 @@
 (package-refresh-contents)
 
 (package-install 'quelpa)
-(setq package-native-compile t)
+;; (setq package-native-compile t)
 
 
 ;; with plist enabled

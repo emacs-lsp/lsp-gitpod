@@ -1,3 +1,5 @@
+(setq native-comp-deferred-compilation nil)
+
 (package-initialize)
 
 (tool-bar-mode -1)
@@ -37,11 +39,13 @@
       lsp-completion-show-detail nil
       lsp-completion-show-kind nil
 
+      ;; less noise/faster
       helm-buffer-details-flag nil
 
       lsp-idle-delay 0.1
-      lsp-headerline-breadcrumb-enable t
       lsp-signature-function #'lsp-signature-posframe
+
+      ;; faster details popup
       company-quickhelp-delay 0.1)
 
 (with-eval-after-load 'dired
