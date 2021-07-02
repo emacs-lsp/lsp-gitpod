@@ -14,6 +14,9 @@ RUN NATIVE_FULL_AOT=1 make -j8
 
 WORKDIR /home/gitpod/
 
+RUN mkdir -p ~/.local/share/fonts/
+COPY fonts/* ~/.local/share/fonts/
+
 COPY configs/install-packages.el /tmp/install-packages.el
 RUN ~/emacs/src/emacs --batch -l /tmp/install-packages.el
 
@@ -25,9 +28,7 @@ RUN rm -rf ~/.emacs.d
 RUN git clone --depth 1 https://github.com/syl20bnr/spacemacs /home/gitpod/.emacs.d/ --branch develop
 COPY configs/spacemacs.d /home/gitpod/.spacemacs.d
 
-ENV SPACEMACSDIR=~/.spacemacs.d
-
-RUN ~/emacs/src/emacs --batch -l ~/.emacs.d/init.el
+RUN SPACEMACSDIR=~/.spacemacs.d ~/emacs/src/emacs --batch -l ~/.emacs.d/init.el
 RUN mv ~/.emacs.d ~/spacemacs
 RUN git clone --depth 1 https://github.com/plexus/chemacs2 /home/gitpod/.emacs.d/
 

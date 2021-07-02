@@ -1,3 +1,6 @@
+;; temporary
+(setq native-comp-deferred-compilation nil)
+
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-refresh-contents)
