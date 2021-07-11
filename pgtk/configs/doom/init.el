@@ -2,6 +2,9 @@
 
 ;; NOTE: this is a slimmed down version of doom-emacs/init.example.el
 
+(setq no-native-compile t
+      straight-disable-native-compile t)
+
 (doom! :completion
        company           ; the ultimate code completion backend
        ivy               ; a search engine for love and life
