@@ -25,14 +25,28 @@ RUN ~/emacs/src/emacs --batch -l /tmp/install-servers.el
 
 RUN mv ~/.emacs.d/ ~/vanilla
 
+COPY configs/vanilla/init.el /home/gitpod/vanilla/init.el
+
 RUN git clone --depth 1 https://github.com/syl20bnr/spacemacs /home/gitpod/.emacs.d/ --branch develop
 COPY configs/spacemacs.d /home/gitpod/.spacemacs.d
 
 RUN SPACEMACSDIR=~/.spacemacs.d ~/emacs/src/emacs --batch -l ~/.emacs.d/init.el
 RUN mv ~/.emacs.d ~/spacemacs
-RUN git clone --depth 1 https://github.com/plexus/chemacs2 /home/gitpod/.emacs.d/
-
-COPY configs/.emacs-profiles.el /home/gitpod/.emacs-profiles.el
-COPY configs/vanilla/init.el /home/gitpod/vanilla/init.el
 
 RUN echo export SPACEMACSDIR=~/.spacemacs.d >> ~/.bashrc
+
+# Doom
+## Clone and set the DOOMDIR folder
+RUN git clone --depth 1 https://github.com/hlissner/doom-emacs /home/gitpod/.emacs.d/ --branch develop
+COPY configs/doom /home/gitpod/.config/doom
+
+## Sync to install modules and packages
+RUN ulimit -n 9000
+RUN EMACS=~/emacs/src/emacs ~/.emacs.d/bin/doom sync
+
+## Move Doom to Chemacs profile
+RUN mv ~/.emacs.d ~/doom
+
+COPY configs/.emacs-profiles.el /home/gitpod/.emacs-profiles.el
+
+RUN git clone --depth 1 https://github.com/plexus/chemacs2 /home/gitpod/.emacs.d/
