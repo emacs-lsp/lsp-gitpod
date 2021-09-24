@@ -1,5 +1,8 @@
 ;; temporary
-(setq native-comp-deferred-compilation nil)
+(setq package-native-compile t
+      comp-async-jobs-number 8
+      native-comp-deferred-compilation nil
+      native-comp-async-report-warnings-errors nil)
 
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
@@ -36,28 +39,36 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
+     (javascript :variables javascript-backend 'lsp)
+     (rust :variables rust-backend 'lsp)
+     react
+     dart
+     go
+     typescript
+     rust
+     (html :variables html-enable-lsp t)
+     yaml
+     (python :variables python-lsp-server 'pyright)
      emacs-lisp
      git
      helm
-     lsp
-     markdown
-     ;; multiple-cursors
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     (lsp :variables
+          lsp-ui-doc-enable nil
+          lsp-ui-sideline-enable nil)
+     dap
      syntax-checking
-     ;; version-control
-     treemacs)
-
+     treemacs
+     (c-c++ :variables c-c++-backend 'lsp-clangd)
+     (auto-completion :variables auto-completion-enable-help-tooltip t)
+     vinegar
+     (java :variables java-backend 'lsp)
+     markdown
+     (treemacs :variables
+               treemacs-space-between-root-nodes nil
+               treemacs-wrap-around nil
+               treemacs-use-follow-mode nil
+               treemacs-use-git-mode nil)
+     (clojure :variables clojure-enable-clj-refactor t))
 
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -67,7 +78,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(helm-icons)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -243,10 +254,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 10.0
-                               :weight normal
-                               :width normal)
+   dotspacemacs-default-font '("JetBrains Mono Light" :size 11.0)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -514,7 +522,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-home-shorten-agenda-source nil
 
    ;; If non-nil then byte-compile some of Spacemacs files.
-   dotspacemacs-byte-compile nil))
+   dotspacemacs-byte-compile t))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -529,7 +537,8 @@ See the header of this file for more information."
 This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
-If you are unsure, try setting them in `dotspacemacs/user-config' first.")
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  )
 
 
 (defun dotspacemacs/user-load ()
@@ -538,10 +547,54 @@ This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump.")
 
-
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
 This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
-before packages are loaded.")
+before packages are loaded."
+  ;; load common stuff
+
+  (require 'helm-icons)
+  (helm-icons-enable)
+
+  (with-eval-after-load 'treemacs-icons
+    (treemacs-resize-icons 15))
+
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024)
+        company-idle-delay 0.0
+        company-minimum-prefix-length 1
+
+        ;; lock file will kill `npm start'
+        create-lockfiles nil
+        inhibit-splash-screen t
+        inhibit-startup-message t
+
+        ;; avoid resizing of popup while typing.
+        company-tooltip-maximum-width 60
+        company-tooltip-minimum-width 60
+
+        ;; less noise
+        company-frontends '(company-pseudo-tooltip-frontend)
+
+        ;; less noise
+        lsp-completion-show-detail nil
+        lsp-completion-show-kind nil
+
+        ;; less noise/faster
+        helm-buffer-details-flag nil
+
+        lsp-idle-delay 0.1
+        lsp-signature-function #'lsp-signature-posframe
+
+        ;; faster details popup
+        company-quickhelp-delay 0.1
+
+        ;; evil improvements
+        evil-move-beyond-eol t
+        evil-cross-lines t)
+
+  (add-hook 'dired-mode-hook #'lsp-dired-mode)
+
+  (load "~/startup.el"))

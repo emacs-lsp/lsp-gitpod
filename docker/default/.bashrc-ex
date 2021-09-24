@@ -6,11 +6,11 @@
 #         ~/go/bin/gotty --permit-write --port 8085 emacs -nw --with-profile ${PROFILE:-vanilla} ${FILE:-/workspace/} &
 #     fi
 # else
+
 broadwayd :5
 
 pid=$(pidof emacs)
 if [ -z $pid ]
 then
-    GDK_BACKEND=broadway BROADWAY_DISPLAY=:5 /home/gitpod/emacs/src/emacs --with-profile ${PROFILE:-vanilla} $GITPOD_REPO_ROOT &
+    GDK_BACKEND=broadway BROADWAY_DISPLAY=:5 /home/gitpod/emacs/src/emacs --with-profile ${PROFILE:-vanilla} &
 fi
-# fi

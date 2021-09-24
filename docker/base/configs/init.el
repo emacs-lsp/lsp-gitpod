@@ -51,9 +51,9 @@
 (with-eval-after-load 'dired
   (treemacs-icons-dired-mode))
 
-(with-eval-after-load 'lsp-mode
-  (require 'dap-chrome)
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  (add-hook 'dired-mode-hook #'lsp-dired-mode)
-  (yas-global-mode)
-  (company-quickhelp-mode))
+(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+(add-hook 'dired-mode-hook #'lsp-dired-mode)
+(yas-global-mode)
+(company-quickhelp-mode)
+
+(load "~/startup.el")
