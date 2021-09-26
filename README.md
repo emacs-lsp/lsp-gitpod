@@ -36,3 +36,4 @@ You can replace `PROJECT` and `URL` with any `github` project. Once you login yo
 ## Limitations
 
 * VScode tab has to be kept open and you have to click every 30 minute on it to keep the session open. This issue will be sorted out with gitpod team.
+* Clipboard is not shared - this is GTK Broadway bug.

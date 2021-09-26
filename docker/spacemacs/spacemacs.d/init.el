@@ -599,9 +599,10 @@ before packages are loaded."
 
         ;; evil improvements
         evil-move-beyond-eol t
-        evil-cross-lines t
+        evil-cross-lines t)
 
-        vterm-shell "/bin/bash")
+  (with-eval-after-load 'vterm
+    (setq vterm-shell "/bin/bash"))
 
   (add-hook 'dired-mode-hook #'lsp-dired-mode)
 
