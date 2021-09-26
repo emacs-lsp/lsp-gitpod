@@ -38,8 +38,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     (javascript :variables javascript-backend 'lsp)
+   '((javascript :variables javascript-backend 'lsp)
      (rust :variables rust-backend 'lsp)
      react
      dart
@@ -52,9 +51,11 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      helm
+     fasd
      (lsp :variables
           lsp-ui-doc-enable nil
           lsp-ui-sideline-enable nil)
+     (shell :variables shell-default-shell 'vterm)
      dap
      syntax-checking
      treemacs
@@ -557,6 +558,10 @@ before packages are loaded."
 
   (require 'helm-icons)
   (helm-icons-enable)
+
+  (add-hook 'prog-mode-hook 'evil-cleverparens-mode)
+  (add-hook 'web-mode-hook 'evil-cleverparens-mode)
+  (add-hook 'web-mode-hook 'smartparens-mode)
 
   (with-eval-after-load 'treemacs-icons
     (treemacs-resize-icons 15))
