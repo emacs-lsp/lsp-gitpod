@@ -36,5 +36,5 @@ RUN sudo apt-get install libtool-bin
 
 COPY startup.el /home/gitpod/
 RUN sudo rm /home/gitpod/.spacemacs.d/*
-RUN sudo ln -s /workspace/docker/spacemacs/spacemacs.d/init.el /home/gitpod/.spacemacs.d/
+RUN sudo ln -s /workspace/lsp-gitpod/docker/spacemacs/spacemacs.d/init.el /home/gitpod/.spacemacs.d/
 RUN sudo chown gitpod:gitpod /home/gitpod/.spacemacs.d -R
