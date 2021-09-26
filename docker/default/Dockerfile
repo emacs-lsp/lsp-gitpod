@@ -35,3 +35,5 @@ COPY --from=yyoncho/gitpod-doom:1.0.0 /home/gitpod/.config/doom /home/gitpod/.co
 RUN sudo apt-get install libtool-bin
 
 COPY startup.el /home/gitpod/
+RUN sudo rm /home/gitpod/.spacemacs.d/*
+RUN sudo ln -s /workspace/docker/spacemacs/spacemacs.d/init.el /home/gitpod/.spacemacs.d/
