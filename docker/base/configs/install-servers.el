@@ -21,3 +21,6 @@
 (my/wait-for-installation 'rust-analyzer)
 (my/wait-for-installation 'css-ls)
 (my/wait-for-installation 'clojure-lsp)
+
+(require 'dap-cpptools)
+(dap-cpptools-setup)
