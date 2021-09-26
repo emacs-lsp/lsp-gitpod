@@ -12,8 +12,8 @@ RUN git clone --depth 1 https://github.com/plexus/chemacs2 /home/gitpod/.emacs.d
 
 COPY --from=yyoncho/gitpod-doom:1.0.0 /home/gitpod/.emacs.d /home/gitpod/doom
 
-COPY --from=yyoncho/gitpod-spacemacs:1.0.11 /home/gitpod/.emacs.d /home/gitpod/spacemacs
-COPY --from=yyoncho/gitpod-spacemacs:1.0.11 /home/gitpod/.spacemacs.d /home/gitpod/.spacemacs.d
+COPY --from=yyoncho/gitpod-spacemacs:1.0.12 /home/gitpod/.emacs.d /home/gitpod/spacemacs
+COPY --from=yyoncho/gitpod-spacemacs:1.0.12 /home/gitpod/.spacemacs.d /home/gitpod/.spacemacs.d
 
 USER root
 RUN chown gitpod:gitpod *

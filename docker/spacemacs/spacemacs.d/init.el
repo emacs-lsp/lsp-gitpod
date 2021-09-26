@@ -2,7 +2,8 @@
 (setq package-native-compile t
       comp-async-jobs-number 8
       native-comp-deferred-compilation nil
-      native-comp-async-report-warnings-errors nil)
+      native-comp-async-report-warnings-errors nil
+      lsp-use-plists t)
 
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
