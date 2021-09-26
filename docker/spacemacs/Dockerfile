@@ -10,4 +10,4 @@ COPY spacemacs.d /home/gitpod/.spacemacs.d
 # RUN SPACEMACSDIR=~/.spacemacs.d ~/emacs/src/emacs --batch -l ~/.emacs.d/init.el -e "wait-for-native-comp"
 COPY initialize-spacemacs.el /home/gitpod/initialize-spacemacs.el
 
-RUN SPACEMACSDIR=~/.spacemacs.d ~/emacs/src/emacs --batch -l /home/gitpod/initialize-spacemacs.el
+RUN LSP_USE_PLISTS=true SPACEMACSDIR=~/.spacemacs.d ~/emacs/src/emacs --batch -l /home/gitpod/initialize-spacemacs.el

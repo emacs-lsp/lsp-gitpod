@@ -4,7 +4,13 @@
 ![Gitpod](gitpod.png "Emacs Gitpod in action")
 ## Quickstart
 
-Open the following url: https://gitpod.io/#ORG=emacs-lsp,PROJECT=demo-projects,PROFILE=vanilla/https://github.com/emacs-lsp/lsp-gitpod . You can replace `PROJECT` and `URL` with any `github` project. Once you login you will see `VScode` editor and after a separate browser tab will pop up with Emacs in it(if you have your popups disabled, you can prefix the `VScode` url with `8085-` but make sure you keep the `VScode` tab open).
+Open the following url:
+
+```
+https://gitpod.io/#ORG=emacs-lsp,PROJECT=demo-projects,PROFILE=vanilla/https://github.com/emacs-lsp/lsp-gitpod
+```
+
+You can replace `PROJECT` and `URL` with any `github` project. Once you login you will see `VScode` editor and after a separate browser tab will pop up with Emacs in it(if you have your popups disabled, you can prefix the `VScode` url with `8085-` but make sure you keep the `VScode` tab open).
 
 ## Features
 - Fully preconfigured ready-to-code Emacs Based IDE. There are several preconfigured
