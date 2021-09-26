@@ -1,1 +1,1 @@
-FROM yyoncho/gitpod-default:1.0.20
+FROM yyoncho/gitpod-default:1.0.21
