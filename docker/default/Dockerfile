@@ -33,3 +33,5 @@ RUN echo 'source ~/.bashrc-ex' >> ~/.bashrc
 COPY --from=yyoncho/gitpod-doom:1.0.0 /home/gitpod/.config/doom /home/gitpod/.config/doom
 
 RUN sudo apt-get install libtool-bin
+
+COPY startup.el /home/gitpod/

@@ -30,7 +30,6 @@ RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && ~/emacs/src/emacs --ba
 
 COPY configs/init.el /home/gitpod/.emacs.d/init.el
 
-COPY startup.el /home/gitpod/
 COPY fonts/* ~/.local/share/fonts/
 
 RUN sudo apt-get update && sudo apt-get install -y ripgrep fasd

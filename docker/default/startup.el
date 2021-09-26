@@ -33,7 +33,11 @@
 (defun startup-handle-project-dir (directory)
   (find-file directory)
   (require 'lsp-mode)
-  (lsp-workspace-folders-add directory))
+  (if-let (workspaces (directory-files directory t ".*\.code-workspace" ))
+      (progn
+        (message "Loading %s" (car workspaces))
+        (lsp-load-vscode-workspace (car workspaces)))
+    (lsp-workspace-folders-add directory)))
 
 (let* ((org (getenv "ORG"))
        (project (getenv "PROJECT"))
