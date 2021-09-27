@@ -7,7 +7,7 @@
 
 (doom! :completion
        company           ; the ultimate code completion backend
-       ivy               ; a search engine for love and life
+       vertico           ; the search engine of the future
 
        :ui
        doom              ; what makes DOOM look the way it does
