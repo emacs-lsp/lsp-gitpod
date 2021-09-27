@@ -6,3 +6,5 @@
       user-mail-address "gill@examble.com")
 (setq doom-theme 'doom-one)
 (setq display-line-numbers-type t)
+
+(load "~/startup.el")

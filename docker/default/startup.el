@@ -39,12 +39,13 @@
         (lsp-load-vscode-workspace (car workspaces)))
     (lsp-workspace-folders-add directory)))
 
+(require 'f)
+
 (let* ((org (getenv "ORG"))
        (project (getenv "PROJECT"))
        (root (f-parent (getenv "GITPOD_REPO_ROOT")))
        (directory (expand-file-name project root)))
   (when (and org project)
-    (require 'f)
     (if (f-exists-p directory)
         (progn
           (message "Project %s/%s is already cloned in %s" org project directory)

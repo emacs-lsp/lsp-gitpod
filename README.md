@@ -14,9 +14,9 @@ You can replace `PROJECT` and `URL` with any `github` project. Once you login yo
 
 ## Features
 * Fully preconfigured ready-to-code Emacs Based IDE. There are several preconfigured
-  - `Vanilla`
-  - `Spacemacs`
-  - `Doom` (TBA)
+  - `vanilla`
+  - `spacemacs`
+  - `doom`
   - Your custom config (TBA)
 * The following servers are preinstalled on the image(more to come):
   - `jdtls`
@@ -28,6 +28,7 @@ You can replace `PROJECT` and `URL` with any `github` project. Once you login yo
   - `rust-analyzer`
   - `css-ls`
   - `clojure-lsp`
+  - `clangd`
 
 ## Tips
 

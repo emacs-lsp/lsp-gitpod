@@ -24,3 +24,6 @@
 
 (require 'dap-cpptools)
 (dap-cpptools-setup)
+
+(require 'dap-node)
+(dap-node-setup)
