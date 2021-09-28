@@ -12,13 +12,15 @@ RUN ./autogen.sh
 RUN ./configure --with-pgtk --with-cairo --with-modules --with-native-compilation --with-json
 RUN NATIVE_FULL_AOT=1 make -j8
 
+RUN sudo apt-get update && sudo apt-get install -y ripgrep fasd  libtool-bin
+
+COPY fonts/* /home/gitpod/.local/share/fonts/
+RUN mkdir -p /home/gitpod/.local/share/fonts/
+
 WORKDIR /home/gitpod/
 
-RUN mkdir -p .local/share/fonts/
-COPY fonts/* .local/share/fonts/
-
 COPY configs/install-packages.el /tmp/install-packages.el
-RUN ~/emacs/src/emacs --batch -l /tmp/install-packages.el
+RUN LSP_USE_PLISTS=true ~/emacs/src/emacs --batch -l /tmp/install-packages.el
 
 USER root
 RUN mkdir /workspace/m2-repository/ -p
@@ -31,5 +33,3 @@ RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && ~/emacs/src/emacs --ba
 COPY configs/init.el /home/gitpod/.emacs.d/init.el
 
 COPY fonts/* ~/.local/share/fonts/
-
-RUN sudo apt-get update && sudo apt-get install -y ripgrep fasd

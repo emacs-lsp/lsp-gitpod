@@ -1,4 +1,5 @@
 (setq native-comp-deferred-compilation nil)
+(setq lsp-use-plists t)
 
 (package-initialize)
 

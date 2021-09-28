@@ -1,6 +1,4 @@
-FROM yyoncho/gitpod-base:1.0.12
-
-RUN sudo apt-get install libtool-bin
+FROM yyoncho/gitpod-base:1.1.2
 
 RUN mv .emacs.d vanilla
 
