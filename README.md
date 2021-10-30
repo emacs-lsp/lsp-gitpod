@@ -12,6 +12,8 @@ https://gitpod.io/#ORG=emacs-lsp,PROJECT=demo-projects,PROFILE=vanilla/https://g
 
 You can replace `PROJECT` and `URL` with any `github` project. Once you login you will see `VScode` editor and after a separate browser tab will pop up with Emacs in it(if you have your popups disabled, you can prefix the `VScode` url with `8085-` but make sure you keep the `VScode` tab open).
 
+You can check this demo: https://www.youtube.com/watch?v=LGPdUkb9JHM for overview of the functionality.
+
 ## Features
 * Fully preconfigured ready-to-code Emacs Based IDE. There are several preconfigured
   - `vanilla`
