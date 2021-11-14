@@ -47,7 +47,8 @@
       lsp-signature-function #'lsp-signature-posframe
 
       ;; faster details popup
-      company-quickhelp-delay 0.1)
+      company-quickhelp-delay 0.1
+      company-quickhelp-use-propertized-text t)
 
 (with-eval-after-load 'dired
   (treemacs-icons-dired-mode))
